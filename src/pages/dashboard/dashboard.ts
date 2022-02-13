@@ -5,7 +5,6 @@ import axios from 'axios';
 export default class Dashboard extends Vue {
 
     coins: any;
-    interval: number;
 
     data() {
         return {
@@ -28,10 +27,6 @@ export default class Dashboard extends Vue {
 
     mounted() {
         this.getTickers();
-        this.interval = setInterval(this.getTickers, 60000); //1초(1000) * 60
+        setInterval(this.getTickers, 60000); //1초(1000) * 60
     }  
-
-    componentWillUnmount() {
-        clearInterval(this.interval);
-    }
 }
