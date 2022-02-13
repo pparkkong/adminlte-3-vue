@@ -1,38 +1,37 @@
-import {Options, Vue} from 'vue-class-component';
+import { Options, Vue } from 'vue-class-component';
 import axios from 'axios';
 
 @Options({})
 export default class Dashboard extends Vue {
 
-    getResult: any;
+    coins: any;
+    interval: number;
 
     data() {
         return {
-            getResult : Array
+            coins : Array
         }
     }
 
-    getTicker() {
-        const crypto = "KRW-BTC,KRW-ETH,KRW-ORBS"; //비트코인 이더리움 오브스
+    async getTickers() {
+        const crypto = "KRW-BTC"; //비트코인
         const upbitUrl = "https://api.upbit.com/v1/ticker?markets=";
+        
+        const res = await axios.get(upbitUrl + crypto);
+        this.coins = res.data;
+        console.log(res.data[0].trade_price);
+    }
+  
+    created() {
+        this.getTickers();
+    }
 
-        axios
-            .get(upbitUrl + crypto)
-            .then(res => {
-                this.getResult = res.data;
-            } 
-            )
-            .catch(err => {
-                console.log(err);
-            });
+    mounted() {
+        this.getTickers();
+        this.interval = setInterval(this.getTickers, 60000); //1초(1000) * 60
+    }  
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
-  
-    created () {
-        this.getTicker;
-    }
-  
-    mounted () {
-        setInterval(this.getTicker,1000); //1초(1000) * 60
-    }
-    
 }

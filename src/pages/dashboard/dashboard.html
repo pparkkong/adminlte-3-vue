@@ -106,10 +106,10 @@
                             <th>현재가</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody v-for="coin in coins">
                         <tr>
-                            <th>이름</th>
-                            <th>현재가</th>
+                            <th>비트코인</th>
+                            <th>{{ coin.trade_price.toLocaleString() }}</th>
                         </tr>
                     </tbody>
                 </table>
