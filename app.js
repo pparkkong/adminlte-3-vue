@@ -8,10 +8,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
+
 app.get('/api/tickers', function (req, res) {
 
     axiosApp
-            .get('https://api.upbit.com/v1/ticker?markets=KRW-BTC')
+            .get('https://crix-api-endpoint.upbit.com/v1/crix/recent?codes=CRIX.UPBIT.KRW-BTC')
             .then(response => {
                 res.json(response.data);
             }).catch(async err => {
@@ -19,4 +20,4 @@ app.get('/api/tickers', function (req, res) {
             })
 });
 
-app.listen(3000, () => console.log('Server Running at http://localhost:3000/api/tickers'));
+app.listen(3001, () => console.log('Server Running at http://localhost:3001/api/tickers'));
