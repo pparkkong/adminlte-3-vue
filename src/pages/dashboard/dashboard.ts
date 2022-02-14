@@ -1,8 +1,6 @@
 import { Options, Vue } from 'vue-class-component';
 import axios from 'axios';
 
-const date = new Date();
-
 @Options({})
 export default class Dashboard extends Vue {
 

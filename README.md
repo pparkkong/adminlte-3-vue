@@ -5,10 +5,17 @@ To login website use:
 `username:` admin@example.com<br />
 `password:` admin<br />
 
+
 ## Project setup
 
 ```
 npm install
+```
+
+## api server
+
+```
+node app.js
 ```
 
 ### Compiles and hot-reloads for development
